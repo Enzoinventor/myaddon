@@ -20,7 +20,7 @@ VERSION = "4.0.0"
 PATH = "repo" 
 
 def CATEGORIES():
-    link = OPEN_URL('https://www.dropbox.com/scl/fi/puymak5golamhrp8pjoqp/ght.xml?rlkey=2znumsu043q0sibsyzs6wk9uw&dl=1').replace('\n','').replace('\r','')
+    link = OPEN_URL('https://www.dropbox.com/scl/fi/cggqi9l0nj8hcvi2imny1/ght.xml?rlkey=xag7i9htusdvhqjj393qhi078&dl=0').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,1,iconimage,fanart,description)
