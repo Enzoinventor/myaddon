@@ -185,17 +185,6 @@ def check(background=False):
                 try:
                     with open(config.changelogFile, 'a+') as fileC:
                         fileC.write(changelog)
-                        f = open("special://home/addons/plugin.video.lo-scienziato-pazzo/changelog.txt","r")
-                        while True:
-                          line = f.readline()
-                          if not line:
-                             break
-                          logger.info('linea:',line)
-                        f.close()
-
-                        #if changelog==("Update update.txt"):
-                        #  platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
-                
                 except:
                     import traceback
                     logger.error(traceback.format_exc())
