@@ -172,7 +172,7 @@ def check(background=False):
         updated = True
         xbmc.executebuiltin("UpdateLocalAddons")
         xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-        xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+        #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
 
         if config.get_setting("addon_update_message", default=True):
             if background:
