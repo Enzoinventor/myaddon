@@ -172,14 +172,14 @@ def check(background=False):
         updated = True
         xbmc.executebuiltin("UpdateLocalAddons")
         xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-        xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+        #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
 
         if config.get_setting("addon_update_message", default=True):
             if background:
                 #notification = config.get_localized_string(80040)
                 #xbmc.executebuiltin("UpdateLocalAddons")
                 #notification = "Commits received: %s"
-                platformtools.dialog_notification(config.get_localized_string(20000), config.get_localized_string(80040) % commits[0]['sha'][:7], time=3000, sound=False)
+                platformtools.dialog_notification(config.get_localized_string(20000), config.get_localized_string(80040) % commits[0]['sha'][:7], time=3000, sound=True)
                 #platformtools.dialog_notification(config.get_localized_string(20000), notification % (commits[0]['sha'][:7],), time=3000, sound=False)
                 platformtools.dialog_ok('Lo Scienziato Pazzo', 'Aggiornamenti applicati:\n' + changelog)
                 try:
