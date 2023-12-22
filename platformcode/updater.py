@@ -185,16 +185,16 @@ def check(background=False):
                 try:
                     with open(config.changelogFile, 'a+') as fileC:
                         fileC.write(changelog)
+                        if changelog==("Update update.txt"):
+                          platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
+                
                 except:
                     import traceback
                     logger.error(traceback.format_exc())
             elif changelog:
                 #changelog = config.get_changelog_text()
                 platformtools.dialog_ok(config.get_localized_string(20000), config.get_localized_string(80041) + changelog)
-            elif changelog:
-                changelog = config.get_changelog_text("Update update.txt")
-                platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
-                
+            
                 
     else:
         logger.info('Nessun nuovo aggiornamento')
