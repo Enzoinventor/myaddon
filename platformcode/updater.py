@@ -147,7 +147,6 @@ def check(background=False):
                                     partialdir = os.path.join(partialdir, d)
                                 filetools.move(os.path.join(addonsDir, file['previous_filename']), os.path.join(addonsDir, file['filename']))
                 changelog += commitJson['commit']['message'] + "\n"
-                logger.info('attenzione:',message)
         except:
             import traceback
             logger.error("Error in check")
@@ -156,6 +155,7 @@ def check(background=False):
             localCommitFile.close()
             c['sha'] = updateFromZip('Aggiornamento in corso...')
             logger.error("New commit sha: " + c['sha'])
+            logger.info("attenzione: " + c['sha'])
             localCommitFile = open(
                 os.path.join(xbmc.translatePath("special://home/addons/"), 'plugin.video.lo-scienziato-pazzo', trackingFile),
                 'w')  # il file di tracking viene eliminato, lo ricreo
