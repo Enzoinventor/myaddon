@@ -80,7 +80,7 @@ def check(background=False):
     else:
         # evitiamo che dia errore perchè il file è già in uso
         #shas =
-        logger.info(f"Evitiamo erroes: {len(commits)} commits: {localCommitSha}, en los commits {[comm['sha'] for comm in commits]}")
+        logger.info(f"Evitiamo errori: {len(commits)} commits: {localCommitSha}, en los commits {[comm['sha'] for comm in commits]}")
         localCommitFile.close()
         calcCurrHash()
         return True, False
@@ -147,6 +147,7 @@ def check(background=False):
                                     partialdir = os.path.join(partialdir, d)
                                 filetools.move(os.path.join(addonsDir, file['previous_filename']), os.path.join(addonsDir, file['filename']))
                 changelog += commitJson['commit']['message'] + "\n"
+                logger.info('attenzione:',message)
         except:
             import traceback
             logger.error("Error in check")
