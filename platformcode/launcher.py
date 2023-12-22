@@ -29,5 +29,5 @@ def start():
         except:
             pass
 
-    if changelog == 'update.txt'():
-      platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
+    #if changelog == 'update.txt'():
+      #platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
