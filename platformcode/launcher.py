@@ -1,4 +1,4 @@
-ti# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # ------------------------------------------------------------
 # XBMC Launcher (xbmc / kodi)
 # ------------------------------------------------------------
@@ -25,9 +25,8 @@ def start():
                 if changelog.strip() and config.get_setting("addon_update_message"):
                     platformtools.dialog_ok('Lo scenziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
             #filetools.remove(config.changelogFile)
-                
         except:
             pass
 
-    #if changelog == 'update.txt'():
-      #platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
+    if changelog == 'update.txt'():
+      platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
