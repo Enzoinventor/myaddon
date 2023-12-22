@@ -190,7 +190,7 @@ def check(background=False):
                           line = f.readline()
                           if not line:
                              break
-                          logger.info("linea:",line)
+                          logger.info('linea:',line)
                         f.close()
 
                         #if changelog==("Update update.txt"):
