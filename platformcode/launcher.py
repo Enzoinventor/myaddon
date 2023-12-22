@@ -24,7 +24,7 @@ def start():
                 changelog = fileC.read()
                 if changelog.strip() and config.get_setting("addon_update_message"):
                     platformtools.dialog_ok('Lo scenziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
-                elif changelog == ("Update update.txt"):
+                elif changelog.read == ("Update update.txt"):
                       platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
         
         #filetools.remove(config.changelogFile)
