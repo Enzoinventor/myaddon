@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ti# -*- coding: utf-8 -*-
 # ------------------------------------------------------------
 # XBMC Launcher (xbmc / kodi)
 # ------------------------------------------------------------
@@ -29,5 +29,5 @@ def start():
         except:
             pass
 
-    elif changelog == 'update.txt'
-          platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
+    if changelog == 'update.txt'():
+      platformtools.dialog_ok('Lo scenziato pazzo', 'Nuova Build disponibile vuoi installarla?')
