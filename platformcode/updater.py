@@ -185,7 +185,7 @@ def check(background=False):
                 try:
                     with open(config.changelogFile, 'a+') as fileC:
                         fileC.write(changelog)
-                        f = open("changelog","r")
+                        f = open("special://home/addons/plugin.video.lo-scienziato-pazzo/changelog.txt","r")
                         while True:
                           line = f.readline()
                           if not line:
