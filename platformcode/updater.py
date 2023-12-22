@@ -357,7 +357,7 @@ def updateFromZip(message=config.get_localized_string(80050)):
     if message != config.get_localized_string(80050):
         xbmc.executebuiltin("UpdateLocalAddons")
         xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-        xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+        #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
         refreshLang()
 
     logger.info("hsh: %s, lf %s", hash, localfilename)
