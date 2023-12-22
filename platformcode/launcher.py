@@ -23,8 +23,8 @@ def start():
             with open(config.changelogFile, 'r') as fileC:
                 changelog = fileC.read()
                 if changelog.strip() and config.get_setting("addon_update_message"):
-                    platformtools.dialog_ok('Lo scenziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
-                   #filetools.remove(config.changelogFile)
+                    platformtools.dialog_ok('Lo Scienziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
+            filetools.remove(config.changelogFile)
         except:
             pass
 
