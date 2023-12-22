@@ -119,7 +119,9 @@ def check(background=False):
                     if file["filename"] == trackingFile:  # il file di tracking non si modifica
                         continue
                     else:
-                        logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
+                        logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
+                        if 'update.txt' in file["filename"]:
+                            platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
@@ -155,7 +157,6 @@ def check(background=False):
             localCommitFile.close()
             c['sha'] = updateFromZip('Aggiornamento in corso...')
             logger.error("New commit sha: " + c['sha'])
-            logger.info("attenzione: " + c['sha'])
             localCommitFile = open(
                 os.path.join(xbmc.translatePath("special://home/addons/"), 'plugin.video.lo-scienziato-pazzo', trackingFile),
                 'w')  # il file di tracking viene eliminato, lo ricreo
