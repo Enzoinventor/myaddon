@@ -120,9 +120,8 @@ def check(background=False):
                         continue
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
-                        if 'update.txt' in file["filename"]:
-                            logger.info("attenzione:", filename)
-                            #platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
+                        if file=="update.txt":
+                            platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
