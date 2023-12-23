@@ -123,6 +123,9 @@ def check(background=False):
                         if 'update.txt' in file["filename"]:
                             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
                             if update_ok:
+                                xbmc.executebuiltin("UpdateLocalAddons")
+                                xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+                                #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                                 xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
                                 logger.info("update")
                         if 'resources/language' in file["filename"]:
