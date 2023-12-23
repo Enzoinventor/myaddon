@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import time
+import downloader
+import default1
 import io
 import os
 import shutil
@@ -29,13 +32,24 @@ addonsDir =addonDir #os.path.dirname(addonDir)
 maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti troppo indietro c'è bisogno di andare avanti con le pagine
 trackingFile = "last_commit.txt"
 
-import time
-import downloader
-import default1
-remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
-localfilename = filetools.join(xbmc.translatePath('special://','home')
-
-
+def update():
+    logger.log("STARTING UPDATE")
+    dp=platformtools.dialog_progress("Updating","downloading....")
+    # platform
+    remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
+    localfilename = filetools.join(xbmc.translatePath('special://','home')
+    downloader.download(remotefilename, localfilename,dp)
+    time.sleep(2)
+    xbmc.sleep(1000)
+    
+    dp.update(int(0),"\n installing...")
+    hash = file_helper.extractZipFile(localfilename,destpathname,dp)
+    dp.update(int(0),"\n finishing...")
+    platformtools.dialog_ok("Update Completed", 'Addon updated successfuly \n\n click ok to restart addon')
+    xbmc.executebuiltin("UpdateLocalAddons")
+    xbmc.sleep(10)
+    refreshLang()
+    
 
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
@@ -131,7 +145,7 @@ def check(background=False):
                         if 'update.txt' in file["filename"]:
                             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
                             if update_ok:
-                                downloader.download(remotefilename, localfilename)
+                                update()
                                 logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
