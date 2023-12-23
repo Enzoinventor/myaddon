@@ -122,7 +122,7 @@ def check(background=False):
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
                         
                         if 'update.txt' in file["filename"]:
-                            #platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
+                            platformtools.dialog_yesno("Hello","There are new version\nYou want to download it?")
                             logger.info("okk")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
