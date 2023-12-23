@@ -34,7 +34,7 @@ import downloader
 import default1
 remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
 localfilename = filetools.join(xbmc.translatePath('special://','home')
-dp=platformtools.dialog_progress("Updating","downloading....")
+
 
 
 def loadCommits(page=1):
