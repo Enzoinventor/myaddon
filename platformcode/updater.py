@@ -121,9 +121,9 @@ def check(background=False):
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
                         # se rileva un'aggiornamento:
-                        if 'update.txt' in file["filename"]:
-                            platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
-                            logger.info("update")
+                        #if 'update.txt' in file["filename"]:
+                        #    platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
+                        #    logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
@@ -186,6 +186,10 @@ def check(background=False):
                 platformtools.dialog_notification(config.get_localized_string(20000), config.get_localized_string(80040) % commits[0]['sha'][:7], time=3000, sound=True)
                 #platformtools.dialog_notification(config.get_localized_string(20000), notification % (commits[0]['sha'][:7],), time=3000, sound=False)
                 platformtools.dialog_ok('Lo Scienziato Pazzo', 'Aggiornamenti applicati:\n' + changelog)
+            # se rileva un'aggiornamento:
+             if 'update.txt' in file["filename"]:
+                platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
+                logger.info("update")
                 try:
                     with open(config.changelogFile, 'a+') as fileC:
                         fileC.write(changelog)
