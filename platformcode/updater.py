@@ -120,9 +120,9 @@ def check(background=False):
                         continue
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
-                        test=filename
-                        logger.info(f"verissimo:", test)
-                        if test=="update.txt":
+                        
+                        logger.info(f"verissimo:", trackingFile)
+                        if trackingFile=="update.txt":
                             
                             platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
                         if 'resources/language' in file["filename"]:
