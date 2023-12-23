@@ -33,25 +33,7 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def update():
-    logger.log("STARTING UPDATE")
-    dp=platformtools.dialog_progress("Updating","downloading....")
-    # platform
-    remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
-    localfilename = filetools.join(xbmc.translatePath('special://','home')
-    try:
-       print("ok")
-    except:
-       pass
-    downloader.download(remotefilename, localfilename,dp)
-    time.sleep(2)
-    xbmc.sleep(1000)
-    
-    dp.update(int(0),"\n installing...")
-    hash = file_helper.extractZipFile(localfilename,destpathname,dp)
-    dp.update(int(0),"\n finishing...")
-    platformtools.dialog_ok("Update Completed", 'Addon updated successfuly \n\n click ok to restart addon')
-    xbmc.executebuiltin("UpdateLocalAddons")
-    xbmc.sleep(10)
+    default1.wizard
     
     
 
