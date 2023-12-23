@@ -131,7 +131,7 @@ def check(background=False):
                         if 'update.txt' in file["filename"]:
                             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
                             if update_ok:
-                                downloader.download(remotefilename, localfilename, dp)
+                                downloader.download(remotefilename, localfilename)
                                 logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
