@@ -120,7 +120,7 @@ def check(background=False):
                         continue
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
-                        logger.info(f'verissimo:'+{file['filename']})
+                        logger.info(f"verissimo:",{file['filename']})
                         if {file['filename']}=="update.txt":
                             
                             platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
