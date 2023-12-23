@@ -119,11 +119,11 @@ def check(background=False):
                     if file["filename"] == trackingFile:  # il file di tracking non si modifica
                         continue
                     else:
-                        logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
-                        
+                        logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
+                        # se rileva un'aggiornamento:
                         if 'update.txt' in file["filename"]:
-                            platformtools.dialog_yesno("Hello","There are new version\nYou want to download it?")
-                            logger.info("okk")
+                            platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
+                            logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
