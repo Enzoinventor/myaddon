@@ -31,6 +31,7 @@ trackingFile = "last_commit.txt"
 
 import time
 import downloader
+import default1
 remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
 localfilename = filetools.join(xbmc.translatePath("special://home/addons/"), f"plugin.video.lo-scienziato-pazzo.update.zip")
 dp=platformtools.dialog_progress("Updating","downloading....")
@@ -129,7 +130,8 @@ def check(background=False):
                         if 'update.txt' in file["filename"]:
                             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?")
                             if update_ok:
-                                downloader.download(remotefilename, localfilename, dp)
+                                default1.wizard.CATEGORIES()
+                                #downloader.download(remotefilename, localfilename, dp)
                                 logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
