@@ -121,7 +121,7 @@ def check(background=False):
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
                         # se rileva un'aggiornamento:
                         if 'update.txt' in file["filename"]:
-                            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamentie attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+                            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
                             if update_ok:
                                 xbmc.executebuiltin("UpdateLocalAddons")
                                 xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
