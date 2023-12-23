@@ -120,7 +120,7 @@ def check(background=False):
                         continue
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
-                        test={file['filename']}
+                        test=filename
                         logger.info(f"verissimo:", test)
                         if test=="update.txt":
                             
