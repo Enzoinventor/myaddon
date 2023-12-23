@@ -121,6 +121,7 @@ def check(background=False):
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")##controllare filename
                         if {file['filename']}=="update.txt":
+                            logger.info('verissimo'+{file['filename']})
                             platformtools.dialog_yesno(CHECK_FOR_UPDATE_TITLE,"There are new version\nYou want to download it?")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
