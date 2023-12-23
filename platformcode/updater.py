@@ -38,6 +38,10 @@ def update():
     # platform
     remotefilename = "https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1"
     localfilename = filetools.join(xbmc.translatePath('special://','home')
+    try:
+       print("ok")
+    except:
+       pass
     downloader.download(remotefilename, localfilename,dp)
     time.sleep(2)
     xbmc.sleep(1000)
@@ -48,7 +52,7 @@ def update():
     platformtools.dialog_ok("Update Completed", 'Addon updated successfuly \n\n click ok to restart addon')
     xbmc.executebuiltin("UpdateLocalAddons")
     xbmc.sleep(10)
-    refreshLang()
+    
     
 
 def loadCommits(page=1):
