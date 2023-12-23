@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-import time
-import downloader
-import default1
 import io
 import os
 import shutil
