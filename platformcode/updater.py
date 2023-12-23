@@ -125,8 +125,8 @@ def check(background=False):
                             if update_ok:
                                 xbmc.executebuiltin("UpdateLocalAddons")
                                 xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                                #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-                                xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
+                                xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+                                #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
                                 logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
