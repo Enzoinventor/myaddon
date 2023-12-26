@@ -63,7 +63,7 @@ def check(background=False):
     if not commits:
         return False, False
 
-    if Update > ("5.0.0"):
+    if Update > ('/^5\.0\.0/'):
        update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
        if update_ok:
            xbmc.executebuiltin("UpdateLocalAddons")
