@@ -17,15 +17,15 @@ def start():
     functions that we want to execute as soon as we open the plugin.
     '''
     logger.debug()
+    
+    with open(config.updateFile, 'r') as fileC:
+                Update = fileC.readline()
+                logger.info("scrivo:", Update)
 
     if not config.dev_mode():
         try:
             with open(config.changelogFile, 'r') as fileC:
                 changelog = fileC.read()
-            with open(config.updateFile, 'r') as fileC:
-                Update = fileC.readline()
-                logger.info("scrivo:", Update)
-
                 if changelog.strip() and config.get_setting("addon_update_message"):
                     platformtools.dialog_ok('Lo Scienziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
             filetools.remove(config.changelogFile)
