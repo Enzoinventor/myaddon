@@ -30,7 +30,7 @@ def start():
             pass
 
     if not config.dev_mode():
-        var_lettura = open("update.txt", "r").read()
+        var_lettura = open("special://home/addons/plugin.video.lo-scienziato-pazzo/update.txt", "r").read()
         logger.info("scrivo:", var_lettura)
 
     
