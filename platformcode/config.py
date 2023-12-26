@@ -35,7 +35,7 @@ def get_changelog_text():
         
 def get_update_text():
     with open(updateFile, 'r') as fileC:
-        update = fileC.read()
+        update = fileC.readline()
         return update
 
 def get_addon_version(with_fix=True):
