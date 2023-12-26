@@ -29,7 +29,7 @@ if sys.argv[2] == "":
     launcher.start()
 
 with open(config.updateFile, 'r') as fileC:
-                Update = fileC.read()
+                Update = fileC.readline()
                 logger.info("scrivo:", Update)
 
 
