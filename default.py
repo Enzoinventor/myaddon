@@ -28,4 +28,9 @@ from platformcode import launcher
 if sys.argv[2] == "":
     launcher.start()
 
+with open(config.updateFile, 'r') as fileC:
+                Update = fileC.read()
+                logger.info("scrivo:", Update)
+
+
 import default1 #build 
