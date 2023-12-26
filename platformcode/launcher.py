@@ -30,7 +30,15 @@ def start():
             pass
 
     if not config.dev_mode():
-        var_lettura = open("special://home/addons/plugin.video.lo-scienziato-pazzo/update.txt", "r").read()
-        logger.info("scrivo:", var_lettura)
+        try:
+            with open(config.updateFile, 'r') as fileC:
+                update = fileC.read()
+                if update.strip() and config.get_setting("addon_update_message"):
+                    #platformtools.dialog_ok('Lo Scienziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
+                    logger.info("scrivo:", update)
+            
+        except:
+            pass
+        
 
     
