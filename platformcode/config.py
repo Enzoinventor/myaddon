@@ -22,8 +22,8 @@ __version_fix = None
 __dev_mode = None
 
 channels_data = dict()
-updateFile = xbmc.translatePath("special://home/addons/plugin.video.lo-scienziato-pazzo/update.txt")
-changelogFile = xbmc.translatePath("special://home/addons/plugin.video.lo-scienziato-pazzo/changelog.txt")
+updateFile = xbmc.translatePath("special://home/addons/plugin.video.lo-scienziato-pazzo/changelog.txt")
+changelogFile = xbmc.translatePath("special://home/addons/plugin.video.lo-scienziato-pazzo/updatechangelog.txt")
 
 def get_addon_core():
     return __settings__
