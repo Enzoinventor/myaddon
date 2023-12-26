@@ -56,6 +56,9 @@ def check(background=False):
         return False, False
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
+    with open(config.updateFile, 'r') as fileC:
+                Update = fileC.readline()
+                logger.info("Versione:", Update)
     #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
     if not commits:
         return False, False
