@@ -33,9 +33,7 @@ def start():
         try:
             with open(config.updateFile, 'r') as fileC:
                 update = fileC.read()
-                if update.strip() and config.get_setting("addon_update_message"):
-                    #platformtools.dialog_ok('Lo Scienziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
-                    logger.info("scrivo:", update)
+                logger.info("scrivo:", update)
             
         except:
             pass
