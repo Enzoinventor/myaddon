@@ -25,8 +25,9 @@ def start():
                 if changelog.strip() and config.get_setting("addon_update_message"):
                     platformtools.dialog_ok('Lo Scienziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
             filetools.remove(config.changelogFile)
-            var_lettura = open("update.txt", "r").read()
-            logger.info(var_lettura) 
+            var_lettura = open("update.txt", "r") as fileC:
+            update.txt= fileC.read()
+            logger.info("scrivo:", update.txt) 
         except:
             pass
 
