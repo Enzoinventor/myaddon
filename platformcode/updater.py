@@ -120,16 +120,16 @@ def check(background=False):
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
                         # se rileva un'aggiornamento:
-                        if 'update.txt' in file["filename"]:
-                            var_lettura = open("update.txt", "r")
-                            logger.info("update contiene:", var_lettura)
-                            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
-                            if update_ok:
-                                xbmc.executebuiltin("UpdateLocalAddons")
-                                xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                                xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+                        #if 'update.txt' in file["filename"]:
+                         #   var_lettura = open("update.txt", "r")
+                          #  logger.info("update contiene:", var_lettura)
+                           # update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+                           # if update_ok:
+                             #   xbmc.executebuiltin("UpdateLocalAddons")
+                             #   xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+                            #    xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                                 #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-                                logger.info("update")
+                           #     logger.info("update")
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
