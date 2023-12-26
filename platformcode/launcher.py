@@ -18,10 +18,6 @@ def start():
     '''
     logger.debug()
     
-    with open(config.updateFile, 'r') as fileC:
-                Update = fileC.readline()
-                logger.info("scrivo:", Update)
-
     if not config.dev_mode():
         try:
             with open(config.changelogFile, 'r') as fileC:
