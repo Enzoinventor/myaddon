@@ -30,12 +30,7 @@ def start():
             pass
 
     if not config.dev_mode():
-        try:
-            with open(config.updateFile, 'r') as fileC:
-                update = fileC.read()
-                if update.strip() and config.get_setting("update"):
-                    logger.info("scrivo:", update)
-        except:
-            pass
+        var_lettura = open("update.txt", "r").read()
+        logger.info("scrivo:", var_lettura)
 
     
