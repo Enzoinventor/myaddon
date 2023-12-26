@@ -28,15 +28,3 @@ def start():
             
         except:
             pass
-
-    if not config.dev_mode():
-        try:
-            with open(config.updateFile, 'r') as fileC:
-                update = fileC.read()
-                logger.info("scrivo:", update)
-            
-        except:
-            pass
-        
-
-    
