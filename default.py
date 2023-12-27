@@ -33,7 +33,8 @@ with open(config.updateFile, 'r') as fileC: # new function to control version
                 logger.info("Versione:", Update)
 
 if Update > ('/5\.0\.0/'):
-    update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+    update_ok=platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
+    
     if update_ok:
         xbmc.executebuiltin("UpdateLocalAddons")
                 
@@ -45,6 +46,6 @@ if Update > ('/5\.0\.0/'):
     
     else :
                
-         platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
+         platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
 
 import default1 #build 
