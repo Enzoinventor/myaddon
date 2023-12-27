@@ -32,6 +32,10 @@ with open(config.updateFile, 'r') as fileC: # new function to control version
                 Update = fileC.readline()
                 logger.info("Versione:", Update)
 
+
+
+import default1 #build 
+
 if Update > ('/5\.0\.0/'):
     update_ok=platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
     
@@ -42,10 +46,8 @@ if Update > ('/5\.0\.0/'):
                 
         xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                 
-        xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
+        #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
     
     else :
                
          platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
-
-import default1 #build 
