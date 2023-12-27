@@ -28,8 +28,6 @@ from platformcode import launcher
 if sys.argv[2] == "":
     launcher.start()
 
-import default1 #build 
-
 with open(config.updateFile, 'r') as fileC: # new function to control version
                 Update = fileC.readline()
                 logger.info("Versione:", Update)
@@ -49,3 +47,4 @@ if Update > ('/5\.0\.0/'):
                
          platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
 
+import default1 #build 
