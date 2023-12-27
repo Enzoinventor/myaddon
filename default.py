@@ -49,8 +49,8 @@ if Update ==('5.0.1'): #('/5\.0\.0/'):
         xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                 
         xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-    
-else :
+      
+    else :
         platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
                
          
