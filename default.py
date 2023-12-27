@@ -30,6 +30,10 @@ if sys.argv[2] == "":
 
 import default1 #build 
 
+with open(config.updateFile, 'r') as fileC: # new function to control version
+                Update = fileC.readline()
+                logger.info("Versione:", Update)
+
 if Update > ('/5\.0\.0/'):
     update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
     if update_ok:
