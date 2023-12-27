@@ -1,3 +1,3 @@
-5.0.1
+5.0.0
 Compatibile con Kodi 19 e versioni successive
 Versione aggiornata il 26.12.2023
