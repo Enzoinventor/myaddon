@@ -195,7 +195,7 @@ def check(background=False):
                 xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
                 xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                 xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-            else :
+        else :
                 platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
 
         if config.get_setting("addon_update_message", default=True):
