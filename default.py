@@ -15,7 +15,7 @@ try:
     xbmc.makeLegalFilename = xbmcvfs.makeLegalFilename
 except:
     pass
-from platformcode import config, logger
+from platformcode import config, logger,platformtools
 
 logger.info("init...")
 
