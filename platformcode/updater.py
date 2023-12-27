@@ -69,7 +69,7 @@ def check(background=False):
             xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
             xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
     else :
-            platformtools.dialog_ok("Lo Scienziato Pazzo","La Build è aggiornata")
+            logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
         #end function
         
     #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
