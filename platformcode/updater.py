@@ -61,13 +61,9 @@ def build_version():
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
         if txt > ('1.0.1'): 
-            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
             if update_ok:
                 wizard()
-                #xbmc.executebuiltin("UpdateLocalAddons")
-                #xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-                
         else :
             logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
         
