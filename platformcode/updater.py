@@ -9,6 +9,7 @@ import xbmc
 import re
 import downloader
 import time
+import extract
 import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 from lib import githash
 try:
