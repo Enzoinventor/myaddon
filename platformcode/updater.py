@@ -8,6 +8,7 @@ import json
 import xbmc
 import re
 import downloader
+import time
 from lib import githash
 try:
     import urllib.request as urllib
