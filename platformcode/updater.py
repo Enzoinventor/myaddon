@@ -35,6 +35,15 @@ def build_version():
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
+        if txt > ('1.0.1'): 
+        update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+        if update_ok:
+            xbmc.executebuiltin("UpdateLocalAddons")
+            xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+            xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+            xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
+        else :
+            logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
         
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
@@ -63,21 +72,24 @@ def check(background=False):
         return False, False
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
+    
     #new function
-    build_version()
-    with open(config.updateFile, 'r') as fileC: # new function to control version
-                Update = fileC.readline()
-                logger.info("Versione:", Update)
+    
+    build_version() #test ok
+    
+    #with open(config.updateFile, 'r') as fileC: # new function to control version
+    #            Update = fileC.readline()
+    #            logger.info("Versione:", Update)
         
-    if Update > ('5.0.1'): 
-        update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
-        if update_ok:
-            xbmc.executebuiltin("UpdateLocalAddons")
-            xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-            xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-            xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-    else :
-            logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
+    #if Update > ('5.0.1'): 
+    #    update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
+    #    if update_ok:
+    #        xbmc.executebuiltin("UpdateLocalAddons")
+    #        xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+    #        xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+    #        xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
+    #else :
+    #        logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
         #end function
         
     #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
