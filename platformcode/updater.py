@@ -57,11 +57,14 @@ def wizard():
 
 def build_version():
     import urllib.request
+    with open(config.updateFile, 'r') as fileC: # new function to control version
+            Update = fileC.readline()
+            logger.info("Versione:", Update)
     target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
-        if txt > ('1.0.1'): 
+        if Update < ('1.0.1') & txt > ('1.0.1'): 
             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
             if update_ok:
                 wizard()
