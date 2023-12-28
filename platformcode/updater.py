@@ -64,7 +64,7 @@ def build_version():
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
-        if Update < ('1.0.1') & txt > ('1.0.1'): 
+        if Update < txt : 
             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
             if update_ok:
                 wizard()
