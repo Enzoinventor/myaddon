@@ -228,7 +228,7 @@ def setView(content, viewType):
         xbmc.executebuiltin("Container.SetViewMode(%s)" % ADDON.getSetting(viewType) )
         
 if mode==2:
-    #update.run()        
+    update.run()        
 elif mode==None or url==None or len(url)<1:
         CATEGORIES()       
 elif mode==1:
