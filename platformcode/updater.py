@@ -8,7 +8,6 @@ from platformcode import config, logger, platformtools, filetools
 import json
 import xbmc
 import re
-import requests
 from lib import githash
 try:
     import urllib.request as urllib
@@ -31,10 +30,12 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def build_version():
-    txt = urllib.request.urlopen('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1').read()
-    print(txt)
-    logger.info("dropbox:", txt)
-    
+    import urllib.request  # the lib that handles the url stuff
+    target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
+    for line in urllib.request.urlopen(target_url):
+        txt= line.decode('utf-8')
+        logger.info("La versione della Build è :", txt)
+        
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
     logger.info(apiLink)
