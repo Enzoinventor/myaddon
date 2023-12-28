@@ -30,7 +30,7 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def build_version():
-    txt = urllib.urlopen('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1').readline()
+    txt = urllib.urlopen('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=0').readline()
     print(txt)
     logger.info("dropbox:", txt)
     
