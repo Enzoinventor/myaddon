@@ -32,7 +32,7 @@ trackingFile = "last_commit.txt"
 def build_version():
     link = OPEN_URL('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1').replace('\n','').replace('\r','')
 
-def OPEN_URL(url):
+def OPEN_URL():
     headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'}
     response = requests.get(url, headers = headers)
     link=response.text
