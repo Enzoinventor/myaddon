@@ -8,7 +8,7 @@ from platformcode import config, logger, platformtools, filetools
 import json
 import xbmc
 import re
-import request
+import requests
 from lib import githash
 try:
     import urllib.request as urllib
