@@ -3,6 +3,7 @@ import io
 import os
 import shutil
 from lib.six import BytesIO
+import xbmcvfs
 
 from platformcode import config, logger, platformtools, filetools
 import json
