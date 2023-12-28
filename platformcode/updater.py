@@ -38,7 +38,7 @@ def OPEN_URL(url):
     url=response.text
     return link
 
-def wizard(url):
+def wizard():
     path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
     dp = xbmcgui.DialogProgress()
     dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
