@@ -67,6 +67,7 @@ def check(background=False):
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
     #new function
+    OPEN_URL()
     with open(config.updateFile, 'r') as fileC: # new function to control version
                 Update = fileC.readline()
                 logger.info("Versione:", Update)
