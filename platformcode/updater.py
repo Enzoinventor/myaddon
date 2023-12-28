@@ -30,11 +30,10 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def build_version():
-for line in urllib.request.urlopen('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'):
-    result= line.decode('utf-8')
-    print(result)
-    logger.info("dropbox:", result)
-
+    txt = urllib.urlopen('https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1').read()
+    print(txt)
+    logger.info("dropbox:", txt)
+    
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
     logger.info(apiLink)
@@ -63,7 +62,7 @@ def check(background=False):
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
     #new function
-    OPEN_URL()
+    build_version()
     with open(config.updateFile, 'r') as fileC: # new function to control version
                 Update = fileC.readline()
                 logger.info("Versione:", Update)
