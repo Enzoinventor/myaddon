@@ -9,6 +9,7 @@ import xbmc
 import re
 import downloader
 import time
+import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 from lib import githash
 try:
     import urllib.request as urllib
