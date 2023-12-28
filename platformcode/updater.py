@@ -4,7 +4,7 @@ import os
 import shutil
 from lib.six import BytesIO
 from platformcode import config, logger, platformtools, filetools
-from default1 import wizard
+from default1 import downloader.download(url, lib, dp)
 import json
 import xbmc
 import re
