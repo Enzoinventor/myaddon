@@ -3,9 +3,8 @@ import io
 import os
 import shutil
 from lib.six import BytesIO
-import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
-
 from platformcode import config, logger, platformtools, filetools
+import default1 as setView
 import json
 import xbmc
 import re
@@ -30,39 +29,8 @@ addonsDir =addonDir #os.path.dirname(addonDir)
 maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti troppo indietro c'è bisogno di andare avanti con le pagine
 trackingFile = "last_commit.txt"
 
-def CATEGORIES():
-    url = OPEN_URL('https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1')
-
-def OPEN_URL(url):
-    headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'}
-    response = requests.get(url, headers = headers)
-    url=response.text
-    return link
-
-def wizard():
-    path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
-    dp = xbmcgui.DialogProgress()
-    dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
-    lib=os.path.join(path,'.zip')
-    try:
-       os.remove(lib)
-    except:
-       pass
-    downloader.download(url, lib, dp)
-    addonfolder = xbmcvfs.translatePath(os.path.join('special://','home'))
-    time.sleep(2)
-    dp.update(int(0),"\n Sto estraendo i file, attendi un attimo")
-    print('=======================================')
-    print(addonfolder)
-    print('=======================================')
-    extract.all(lib,addonfolder)#,dp)
-    dialog = xbmcgui.Dialog()
-    dialog.ok("DOWNLOAD COMPLETATO", 'Per vedere le modifiche della nuova Build occorre riavviare Kodi \n Clicca su Ok per riavviare,')
-    os._exit(1)
-    killxbmc()
-
 def build_version():
-    import urllib.request  # the lib that handles the url stuff
+    import urllib.request
     target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
@@ -70,7 +38,7 @@ def build_version():
         if txt > ('1.0.1'): 
             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
             if update_ok:
-                wizard()
+                wizard(name,url,description)
                 #xbmc.executebuiltin("UpdateLocalAddons")
                 #xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
                 #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
