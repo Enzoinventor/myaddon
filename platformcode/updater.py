@@ -4,7 +4,6 @@ import os
 import shutil
 from lib.six import BytesIO
 from platformcode import config, logger, platformtools, filetools
-import default1 as wizard
 import json
 import xbmc
 import re
@@ -38,10 +37,10 @@ def build_version():
         if txt > ('1.0.1'): 
             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
             if update_ok:
-                wizard(name,url,description)
-                #xbmc.executebuiltin("UpdateLocalAddons")
-                #xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+                #wizard(name,url,description)
+                xbmc.executebuiltin("UpdateLocalAddons")
+                xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+                xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
                 #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
         else :
             logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
