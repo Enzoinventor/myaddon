@@ -7,6 +7,7 @@ from platformcode import config, logger, platformtools, filetools
 import json
 import xbmc
 import re
+import downloader
 from lib import githash
 try:
     import urllib.request as urllib
@@ -28,6 +29,29 @@ addonsDir =addonDir #os.path.dirname(addonDir)
 maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti troppo indietro c'è bisogno di andare avanti con le pagine
 trackingFile = "last_commit.txt"
 
+def wizard():
+    name='build'
+    url= 'https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1'
+    path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
+    dp = xbmcgui.DialogProgress()
+    dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
+    lib=os.path.join(path, name+'.zip')
+    try:
+       os.remove(lib)
+    except:
+       pass
+    downloader.download(url, lib, dp)
+    addonfolder = xbmcvfs.translatePath(os.path.join('special://','home'))
+    time.sleep(2)
+    dp.update(int(0),"\n Sto estraendo i file, attendi un attimo")
+    print('=======================================')
+    print(addonfolder)
+    print('=======================================')
+    extract.all(lib,addonfolder)#,dp)
+    dialog = xbmcgui.Dialog()
+    dialog.ok("DOWNLOAD COMPLETATO", 'Per vedere le modifiche della nuova Build occorre riavviare Kodi \n Clicca su Ok per riavviare,')
+    os._exit(1)
+
 def build_version():
     import urllib.request
     target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
@@ -37,11 +61,11 @@ def build_version():
         if txt > ('1.0.1'): 
             update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
             if update_ok:
-                #wizard(name,url,description)
-                xbmc.executebuiltin("UpdateLocalAddons")
-                xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-                #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
+                wizard()
+                #xbmc.executebuiltin("UpdateLocalAddons")
+                #xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
+                #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
+                
         else :
             logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
         
