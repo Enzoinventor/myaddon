@@ -13,11 +13,11 @@ from updates import init as update
 from platformcode import config
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-base='http://aandroide.github.io'
+base='https://github.com/aandroide/myaddon'
 ADDON=xbmcaddon.Addon(id='plugin.video.lo-scienziato-pazzo')
 dialog = xbmcgui.Dialog()    
-VERSION = "4.0.0"
-PATH = "repo" 
+VERSION = "5.0.0"
+PATH = "" 
 
 def CATEGORIES():
     link = OPEN_URL('https://www.dropbox.com/scl/fi/cggqi9l0nj8hcvi2imny1/ght.xml?rlkey=xag7i9htusdvhqjj393qhi078&dl=1').replace('\n','').replace('\r','')
