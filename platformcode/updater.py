@@ -4,7 +4,7 @@ import os
 import shutil
 from lib.six import BytesIO
 from platformcode import config, logger, platformtools, filetools
-import default1 as setView
+from default1 import wizard
 import json
 import xbmc
 import re
