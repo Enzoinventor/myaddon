@@ -24,7 +24,7 @@ addonname = addon.getAddonInfo('name')
 
 _hdr_pat = re.compile("^@@ -(\d+),?(\d+)? \+(\d+),?(\d+)? @@.*")
 
-branch = 'test'
+branch = 'stable'
 user = 'aandroide'
 repo = 'myaddon'
 addonDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
