@@ -20,8 +20,7 @@ VERSION = "5.0.0"
 PATH = "" 
 
 def CATEGORIES():
-    #link = OPEN_URL('https://www.dropbox.com/scl/fi/cggqi9l0nj8hcvi2imny1/ght.xml?rlkey=xag7i9htusdvhqjj393qhi078&dl=1').replace('\n','').replace('\r','')
-    link= OPEN_URL('http://lo-scienziato-pazzo.synology.me/2024/ght/ght.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('https://www.dropbox.com/scl/fi/cggqi9l0nj8hcvi2imny1/ght.xml?rlkey=xag7i9htusdvhqjj393qhi078&dl=1').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,1,iconimage,fanart,description)
