@@ -101,9 +101,7 @@ def check(background=False):
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
     
-    #new function
     
-    build_version() #test ok
     
     #with open(config.updateFile, 'r') as fileC: # new function to control version
     #            Update = fileC.readline()
@@ -121,6 +119,11 @@ def check(background=False):
         #end function
         
     #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
+    
+    #new function
+    
+    build_version() #test ok
+    
     if not commits:
         return False, False
 
