@@ -34,8 +34,7 @@ trackingFile = "last_commit.txt"
 
 def wizard():
     name='build'
-    #url= 'https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1'
-    url= 'http://lo-scienziato-pazzo.synology.me/2024/build/build.zip'
+    url= 'https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1'
     path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
     dp = xbmcgui.DialogProgress()
     dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
@@ -61,8 +60,7 @@ def build_version():
     with open(config.updateFile, 'r') as fileC: # new function to control version
             Update = fileC.readline()
             logger.info("Versione:", Update)
-    #target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
-    target_url='http://lo-scienziato-pazzo.synology.me/2024/notifica/notify.txt'
+    target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
