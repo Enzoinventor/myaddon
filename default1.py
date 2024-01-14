@@ -21,7 +21,7 @@ PATH = ""
 
 def CATEGORIES():
     #link = OPEN_URL('https://www.dropbox.com/scl/fi/cggqi9l0nj8hcvi2imny1/ght.xml?rlkey=xag7i9htusdvhqjj393qhi078&dl=1').replace('\n','').replace('\r','')
-    link= OPEN_URL('https://ia801205.us.archive.org/8/items/ght_20240114/ght.xml').replace('\n','').replace('\r','')
+    link= OPEN_URL('https://ia601208.us.archive.org/1/items/ght_20240114_202401/ght.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,1,iconimage,fanart,description)
