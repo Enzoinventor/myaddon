@@ -33,8 +33,8 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def wizard():
-    name='build'
-    url= 'https://www.dropbox.com/scl/fi/gf588mid2cud62340sbbk/build.zip?rlkey=qnu6t5ccgy4tclc5cz1s7ytru&dl=1'
+    name='test'
+    url= 'https://www.dropbox.com/scl/fi/wa72e0hkspev5wonx7bpq/test.zip?rlkey=rl2mp1awarn513xjee9wzwo8m&st=y82y7w2d&dl=1'
     path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
     dp = xbmcgui.DialogProgress()
     dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
@@ -60,16 +60,15 @@ def build_version():
     with open(config.updateFile, 'r') as fileC: # new function to control version
             Update = fileC.readline()
             logger.info("Versione:", Update)
-    target_url='https://www.dropbox.com/scl/fi/ph80o92v3fi5bhoj5dgue/notify.txt?rlkey=itwtw41uogyvn9oitf0upw7mg&dl=1'
+    target_url='https://www.dropbox.com/scl/fi/cb1ebgga7f9wrkmr1yp9e/notify.txt?rlkey=kydgukczfy7arsn0bx7n95imz&st=kgozzukf&dl=1'
     for line in urllib.request.urlopen(target_url):
         txt= line.decode('utf-8')
         logger.info("La versione della Build è :", txt)
+        dialog = xbmcgui.Dialog()
+    
         if txt > Update: 
-            update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
-            if update_ok:
-                wizard()
-        else :
-            logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
+            dialog.ok("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
+            wizard()
         
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
