@@ -10,6 +10,8 @@ import re
 import downloader
 import time
 import extract
+import logging
+from packaging import version
 import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 from lib import githash
 try:
@@ -55,20 +57,40 @@ def wizard():
     dialog.ok("DOWNLOAD COMPLETATO", 'Per vedere le modifiche della nuova Build occorre riavviare Kodi \n Clicca su Ok per riavviare,')
     os._exit(1)
 
+logger = logging.getLogger()
+logging.basicConfig(level=logging.INFO)
+
 def build_version():
-    import urllib.request
-    with open(config.updateFile, 'r') as fileC: # new function to control version
-            Update = fileC.readline()
-            logger.info("Versione:", Update)
-    target_url='https://www.dropbox.com/scl/fi/cb1ebgga7f9wrkmr1yp9e/notify.txt?rlkey=kydgukczfy7arsn0bx7n95imz&st=kgozzukf&dl=1'
-    for line in urllib.request.urlopen(target_url):
-        txt= line.decode('utf-8')
-        logger.info("La versione della Build è :", txt)
-        dialog = xbmcgui.Dialog()
+    # File di configurazione che contiene la versione attuale
+    try:
+        with open(config.updateFile, 'r') as fileC:
+            update_version = fileC.readline().strip()  # Leggi la versione corrente e rimuovi eventuali spazi vuoti
+            logger.info("Versione attuale della build:", update_version)
+    except Exception as e:
+        logger.error(f"Errore durante la lettura del file di configurazione: {e}")
+        return
     
-        if txt > Update: 
-            dialog.ok("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
-            wizard()
+    # URL del file contenente la versione più recente
+    target_url = 'https://www.dropbox.com/scl/fi/cb1ebgga7f9wrkmr1yp9e/notify.txt?rlkey=kydgukczfy7arsn0bx7n95imz&st=kgozzukf&dl=1'
+    
+    try:
+        # Scarica il contenuto del file remoto
+        with urllib.request.urlopen(target_url) as response:
+remote_version = response.read().decode('utf-8').strip()  # Decodifica il contenuto in UTF-8 e rimuovi eventuali spazi vuoti
+            logger.info("Versione disponibile per l'aggiornamento:", remote_version)
+            
+            # Confronto delle versioni usando la libreria `packaging.version`
+            if version.parse(remote_version) > version.parse(update_version):
+                dialog = xbmcgui.Dialog()
+                dialog.ok(
+                    "Lo Scienziato Pazzo",
+                    f"E' disponibile una nuova versione della build ({remote_version})\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato."
+                )
+                wizard()  # Funzione che gestisce l'aggiornamento
+            else:
+                logger.info("La versione attuale è già la più recente.")
+    except Exception as e:
+        logger.error(f"Errore durante il download o il confronto delle versioni: {e}")
         
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
