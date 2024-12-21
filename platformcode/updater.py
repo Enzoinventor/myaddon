@@ -77,7 +77,7 @@ def build_version():
         # Scarica il contenuto del file remoto
         with urllib.request.urlopen(target_url) as response:
         remote_version = response.read().decode('utf-8').strip()  # Decodifica il contenuto in UTF-8 e rimuovi eventuali spazi vuoti
-            logger.info("Versione disponibile per l'aggiornamento:", remote_version)
+        logger.info("Versione disponibile per l'aggiornamento:", remote_version)
             
             # Confronto delle versioni usando la libreria `packaging.version`
             if version.parse(remote_version) > version.parse(update_version):
