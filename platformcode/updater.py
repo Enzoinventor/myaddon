@@ -33,6 +33,8 @@ addonDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 addonsDir =addonDir #os.path.dirname(addonDir)
 maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti troppo indietro c'è bisogno di andare avanti con le pagine
 trackingFile = "last_commit.txt"
+logger = logging.getLogger()
+logging.basicConfig(level=logging.INFO)
 
 def wizard():
     name='test'
@@ -56,9 +58,6 @@ def wizard():
     dialog = xbmcgui.Dialog()
     dialog.ok("DOWNLOAD COMPLETATO", 'Per vedere le modifiche della nuova Build occorre riavviare Kodi \n Clicca su Ok per riavviare,')
     os._exit(1)
-
-logger = logging.getLogger()
-logging.basicConfig(level=logging.INFO)
 
 def build_version():
     # File di configurazione che contiene la versione attuale
