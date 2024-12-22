@@ -10,7 +10,6 @@ import re
 import downloader
 import time
 import extract
-import logging
 import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 from lib import githash
 try:
@@ -18,10 +17,6 @@ try:
 except ImportError:
     import urllib
 import sys
-
-logger = logging.getLogger()
-logging.basicConfig(level=logging.INFO)
-
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int
 addon = config.__settings__
@@ -60,70 +55,20 @@ def wizard():
     dialog.ok("DOWNLOAD COMPLETATO", 'Per vedere le modifiche della nuova Build occorre riavviare Kodi \n Clicca su Ok per riavviare,')
     os._exit(1)
 
-def get_current_version():
-    """Legge la versione corrente dal file di configurazione."""
-    try:
-        with open(config.updateFile, 'r') as fileC:
-            update = fileC.readline().strip()
-            logger.info(f"Versione corrente: {update}")
-            return update
-    except FileNotFoundError:
-        logger.error(f"File di configurazione non trovato: {config.updateFile}")
-        return None
-    except Exception as e:
-        logger.error(f"Errore nella lettura del file di configurazione: {e}")
-        return None
-
-def compare_versions(version1, version2):
-    """Confronta due versioni in formato stringa (e.g., '1.2.3')."""
-    v1_parts = [int(i) for i in version1.split('.')]
-    v2_parts = [int(i) for i in version2.split('.')]
+def build_version():
+    import urllib.request
+    with open(config.updateFile, 'r') as fileC: # new function to control version
+            Update = fileC.readline()
+            logger.info("Versione:", Update)
+    target_url='https://www.dropbox.com/scl/fi/cb1ebgga7f9wrkmr1yp9e/notify.txt?rlkey=kydgukczfy7arsn0bx7n95imz&st=kgozzukf&dl=1'
+    for line in urllib.request.urlopen(target_url):
+        txt= line.decode('utf-8')
+        logger.info("La versione della Build è :", txt)
+        dialog = xbmcgui.Dialog()
     
-    # Completa le versioni più corte con zeri
-    while len(v1_parts) < len(v2_parts):
-        v1_parts.append(0)
-    while len(v2_parts) < len(v1_parts):
-        v2_parts.append(0)
-    
-    # Confronto delle versioni
-    if v1_parts > v2_parts:
-        return 1
-    elif v1_parts < v2_parts:
-        return -1
-    else:
-        return 0
-
-def check_for_update():
-    """Controlla se è disponibile una nuova versione."""
-    current_version = get_current_version()
-    if not current_version:
-        return  # Se non possiamo ottenere la versione corrente, esci
-
-    target_url = 'https://www.dropbox.com/scl/fi/cb1ebgga7f9wrkmr1yp9e/notify.txt?rlkey=kydgukczfy7arsn0bx7n95imz&st=kgozzukf&dl=1'
-
-    try:
-        with urllib.request.urlopen(target_url) as response:
-            latest_version = response.read().decode('utf-8').strip()
-            logger.info(f"La versione della Build disponibile: {latest_version}")
-
-            if compare_versions(latest_version, current_version) > 0:
-                dialog = xbmcgui.Dialog()
-                dialog.ok(
-                    "Lo Scienziato Pazzo", 
-                    "E' disponibile una nuova versione della build.\nKodi verrà riavviato al termine del download e sarà aggiornato."
-                )
-                wizard()  # Funzione per avviare l'aggiornamento
-            else:
-                logger.info("La versione corrente è già aggiornata.")
-    except urllib.error.URLError as e:
-        logger.error(f"Errore di rete durante il controllo della versione: {e}")
-    except Exception as e:
-        logger.error(f"Errore nel controllo della versione: {e}")
-
-# Esegui il controllo degli aggiornamenti
-check_for_update()
-
-
+        if txt > Update: 
+            dialog.ok("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nKodi verrà riavviato a fine download e una volta aperto sarà aggiornato.")
+            wizard()
         
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
@@ -152,25 +97,6 @@ def check(background=False):
         return False, False
     logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
-    
-    
-    
-    #with open(config.updateFile, 'r') as fileC: # new function to control version
-    #            Update = fileC.readline()
-    #            logger.info("Versione:", Update)
-        
-    #if Update > ('5.0.1'): 
-    #    update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
-    #    if update_ok:
-    #        xbmc.executebuiltin("UpdateLocalAddons")
-    #        xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-    #        xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-    #        xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-    #else :
-    #        logger.info("Lo Scienziato Pazzo","La Build è aggiornata")
-        #end function
-        
-    #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
     
     #new function
     
@@ -238,17 +164,7 @@ def check(background=False):
                         continue
                     else:
                         logger.info(f"extraendo {file['filename']} sobre {addonsDir}, antes {addonDir}")
-                        # se rileva un'aggiornamento:
-                        #if 'update.txt' in file["filename"]:
-                         #   var_lettura = open("update.txt", "r")
-                          #  logger.info("update contiene:", var_lettura)
-                           # update_ok=platformtools.dialog_yesno("Lo Scienziato Pazzo","E' disponibile una nuova versione della build\nVuoi scaricarla?\nClicca su Build universale per installare gli aggiornamenti e attendi che il download sia completato\nKodi verrà riavviato e una volta aperto sarà aggiornato.")
-                           # if update_ok:
-                             #   xbmc.executebuiltin("UpdateLocalAddons")
-                             #   xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-                            #    xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-                                #xbmc.executebuiltin("RunScript(special://home/addons/plugin.video.lo-scienziato-pazzo/default.py)")
-                           #     logger.info("update")
+                        
                         if 'resources/language' in file["filename"]:
                             poFilesChanged = True
                         if 'service.py' in file["filename"]:
@@ -302,15 +218,10 @@ def check(background=False):
         updated = True
         xbmc.executebuiltin("UpdateLocalAddons")
         xbmc.executebuiltin("StopScript(plugin.video.lo-scienziato-pazzo)")
-        #xbmc.executebuiltin("RunAddon(plugin.video.lo-scienziato-pazzo)")
-
+        
         if config.get_setting("addon_update_message", default=True):
             if background:
-                #notification = config.get_localized_string(80040)
-                #xbmc.executebuiltin("UpdateLocalAddons")
-                #notification = "Commits received: %s"
                 platformtools.dialog_notification(config.get_localized_string(20000), config.get_localized_string(80040) % commits[0]['sha'][:7], time=3000, sound=True)
-                #platformtools.dialog_notification(config.get_localized_string(20000), notification % (commits[0]['sha'][:7],), time=3000, sound=False)
                 platformtools.dialog_ok('Lo Scienziato Pazzo', 'Aggiornamenti applicati:\n' + changelog)
                 try:
                     with open(config.changelogFile, 'a+') as fileC:
