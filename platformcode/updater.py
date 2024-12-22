@@ -11,7 +11,6 @@ import downloader
 import time
 import extract
 import logging
-from packaging import version
 import xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 from lib import githash
 try:
@@ -62,7 +61,7 @@ def wizard():
     os._exit(1)
 
 def get_current_version():
-    #Legge la versione corrente dal file di configurazione.
+    """Legge la versione corrente dal file di configurazione."""
     try:
         with open(config.updateFile, 'r') as fileC:
             update = fileC.readline().strip()
@@ -74,6 +73,25 @@ def get_current_version():
     except Exception as e:
         logger.error(f"Errore nella lettura del file di configurazione: {e}")
         return None
+
+def compare_versions(version1, version2):
+    """Confronta due versioni in formato stringa (e.g., '1.2.3')."""
+    v1_parts = [int(i) for i in version1.split('.')]
+    v2_parts = [int(i) for i in version2.split('.')]
+    
+    # Completa le versioni più corte con zeri
+    while len(v1_parts) < len(v2_parts):
+        v1_parts.append(0)
+    while len(v2_parts) < len(v1_parts):
+        v2_parts.append(0)
+    
+    # Confronto delle versioni
+    if v1_parts > v2_parts:
+        return 1
+    elif v1_parts < v2_parts:
+        return -1
+    else:
+        return 0
 
 def check_for_update():
     """Controlla se è disponibile una nuova versione."""
@@ -88,7 +106,7 @@ def check_for_update():
             latest_version = response.read().decode('utf-8').strip()
             logger.info(f"La versione della Build disponibile: {latest_version}")
 
-            if version.parse(latest_version) > version.parse(current_version):
+            if compare_versions(latest_version, current_version) > 0:
                 dialog = xbmcgui.Dialog()
                 dialog.ok(
                     "Lo Scienziato Pazzo", 
@@ -104,6 +122,7 @@ def check_for_update():
 
 # Esegui il controllo degli aggiornamenti
 check_for_update()
+
 
         
 def loadCommits(page=1):
